@@ -1,17 +1,16 @@
 import org.app.Application.Calendar;
 import org.app.Model.Guardian;
-import org.app.Model.Salary;
+import org.app.Application.Salary;
+import org.app.Model.WorkShift;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
 import java.time.Month;
-import java.time.format.DateTimeFormatter;
-import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
-public class TestForPointing {
+public class TestForPointing1 {
     @Test
     public void insertEmploye() {
         Guardian Rakoto = new Guardian(
@@ -93,8 +92,10 @@ public class TestForPointing {
                 "Guardian",
                 100000
         );
+        Salary salaryForRakoto= new Salary(100000, 80000, Rakoto, WorkShift.DAY);
         double exceptedValueOfSalaryPerDay = 14285.71;
-        assertEquals(exceptedValueOfSalaryPerDay, Rakoto.getNetGuardianSalaryPerDay(7));
+        assertEquals(exceptedValueOfSalaryPerDay, salaryForRakoto.getNetSalaryGuardianPerDay(7));
+        System.out.println(salaryForRakoto.getNetSalaryGuardianPerDay(7));
 
     }
     @Test
@@ -136,10 +137,15 @@ public class TestForPointing {
                 "Guardian",
                 100000
         );
-        Salary salaryForRabe = new Salary(100000, 80000, Rabe);
-        double excepetedValueOfSalaryPerGuardian = 780000;
+        Salary salaryForRabe = new Salary(100000, 80000, Rabe, WorkShift.NIGHT);
+        double exceptedValueOfSalaryPerGuardian = 780000;
+        double exceptedValueOfSalaryPerOneNight = 18571.42;
+        double exceptedValueOfSalaryNightPerHour = 1326.53;
+        assertEquals(exceptedValueOfSalaryPerOneNight, salaryForRabe.getNetGuardianSalaryPerNight(7));
+        assertEquals(exceptedValueOfSalaryPerGuardian, salaryForRabe.calculateNetSalaryNight(6));
+        assertEquals(exceptedValueOfSalaryNightPerHour, salaryForRabe.getNetSalaryNightPerHour(14));
+        System.out.println(salaryForRabe.getNetSalaryNightPerHour(14));
 
-        assertEquals(excepetedValueOfSalaryPerGuardian, salaryForRabe.calculateNetSalaryNight(6));
 
     }
 }

@@ -27,11 +27,6 @@ public final class Guardian extends Employee {
         return netGuardianSalary;
     }
 
-    public double getNetGuardianSalaryPerDay(int days) {
-        double salary = getSalary() / days;
-        return Math.round(salary * 100.0) / 100.0;
-    }
-
 
     public double getSalaryPerHour(int hours){
         double salaryPerDay = getSalary() / 7;
