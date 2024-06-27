@@ -16,13 +16,29 @@ import java.util.List;
 
 public class Calendar {
     private LocalDate startDate;
-    private List<LocalDate> offDay;
     private LocalDate endDate;
 
-   public Calendar(Month month, int year, List<LocalDate> offDay) {
-       this.startDate = LocalDate.of(year, month, 1);
-       this.endDate = startDate.withDayOfMonth(startDate.lengthOfMonth());
-       this.offDay = offDay;
+   public Calendar(LocalDate startDate, LocalDate endDate) {
+       this.startDate = startDate;
+       this.endDate = endDate;
+   }
+
+   public int calculateDayOfWork(int weeks, int days){
+       return weeks * days;
+   }
+
+   public int calculateNightOfWork(int weeks, int night){
+       return weeks * night;
+   }
+
+   public int calculateTotalWorkDay(int days, int weeks, int night){
+       return (calculateDayOfWork(weeks, days) + calculateNightOfWork(night, days));
+   }
+
+   public int calculateTotalWorkPerHour(int hours, int weeks, int night, int days){
+       int  totalWorkNightPerHour = ((hours * night) * weeks);
+       int  totalWorkDayPerHour = ((hours * days) * weeks);
+       return totalWorkNightPerHour + totalWorkDayPerHour;
    }
 
 

@@ -18,6 +18,7 @@ public class Pointing {
     private LocalDateTime StartShiftNight;
     private LocalDateTime EndShiftNight;
 
+
     public Pointing() {
         this.StartShiftDay = LocalDateTime.of(LocalDate.now(), LocalTime.of(7, 00));
         this.EndShiftDay = this.StartShiftDay.plusHours(10);
@@ -26,15 +27,17 @@ public class Pointing {
 
     }
 
-    public Duration calculateHourOfWorkDayPerWeek(String Name) {
+
+
+    public int calculateHourOfWorkDayPerWeek(String Name) {
         int totalHourForOneDay =  10 ;
-        Duration totalHourOnWeek = Duration.ofHours(totalHourForOneDay * 7 );
+        int totalHourOnWeek = totalHourForOneDay * 7;
         return totalHourOnWeek;
     }
 
-    public Duration calculateHourOfWorkNightPerWeek(String Name) {
+    public int calculateHourOfWorkNightPerWeek(String Name) {
         int totalHourForOneDay =  14 ;
-        Duration totalHourOnWeek = Duration.ofHours(totalHourForOneDay * 7 );
+        int totalHourOnWeek = (totalHourForOneDay * 7 );
         return totalHourOnWeek;
     }
 
